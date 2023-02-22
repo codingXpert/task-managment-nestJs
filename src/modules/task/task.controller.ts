@@ -8,7 +8,7 @@ import { TaskService } from './task.service';
 export class TaskController{
     constructor(private taskService: TaskService){}
 
-    @Get(':ask')
+    @Get()
     getAllTask():Task[]{
         return this.taskService.getAllTask();
     }
@@ -17,5 +17,11 @@ export class TaskController{
     @Post()
     createTask(@Body() createTaskDto: CreateTaskDto):Task{
         return this.taskService.createTask(createTaskDto);
+    }
+
+    //get task by id
+    @Get('/:id')
+    getTaskById(@Param('id') id: string): Task{
+        return this.taskService.getTaskById(id);
     }
 }
